@@ -1,0 +1,7 @@
+<library path="lib/libdwa_mobs_planner">
+  <class name="dwa_mobs_planner/DWAMobsPlannerROS" type="dwa_mobs_planner::DWAMobsPlannerROS" base_class_type="nav_core::BaseLocalPlanner">
+    <description>
+      An implementation of a dwa local planner that considers moving obstacles.
+    </description>
+  </class>
+</library>
