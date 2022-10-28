@@ -1,0 +1,65 @@
+<robot name="powerbot">
+<link name="base_footprint">
+  	<visual>
+  	<origin xyz="0 0 .275" rpy="0 0 0" />
+  		<geometry>
+  			<cylinder radius="0.3" length=".3"/>
+  		</geometry>
+  		<material name = "grey">
+                        <color rgba="0.5 0.5 0.5 1"/>
+                </material>
+  	</visual>
+  </link>
+
+  
+    <link name="lms_link" >
+		<visual>
+			<geometry>
+				<box size="0.100 .100 .4"/> 
+			</geometry>
+			<material name = "blue">
+				<color rgba="0 0 1 1"/>
+			</material>
+		</visual>
+	</link>
+
+  <joint name="joint7" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="lms_link"/>
+    <origin rpy="0 0 0" xyz= ".2 0 .3"/>
+  </joint>
+
+ <link name="wheel_right" >
+  	<visual>
+			<geometry>
+				<cylinder radius="0.1315" length=".070"/>
+			</geometry>
+			<material name = "black">
+				<color rgba="0.2 0.2 0.2 1"/>
+			</material>
+		</visual>
+	</link>
+
+  <joint name="joint1" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="wheel_right"/>
+    <origin rpy="0 1.57075 1.57075" xyz= "-0.14 0.2 0.1315" />
+  </joint>
+
+  
+  <link name="wheel_left" >
+  	<visual>
+			<geometry>
+				<cylinder radius="0.1315" length=".070"/>
+			</geometry>
+			<material name = "black"/>
+		</visual>
+	</link>
+
+
+  <joint name="joint2" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="wheel_left"/>
+    <origin rpy="0 1.57075 1.57075" xyz= "-.14 -0.2 0.1315"/>
+  </joint>
+</robot>
