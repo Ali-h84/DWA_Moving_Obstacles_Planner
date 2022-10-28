@@ -1,0 +1,211 @@
+define topurg ranger
+(
+  sensor
+  ( 			
+    range [ 0.0  30.0 ]
+    fov 270.25
+    samples 361
+  )
+
+  gripper
+  (
+    # gripper properties
+    paddle_size [ 0.9 0.1 0.9 ]
+    paddle_state [ "open" "down" ]
+    autosnatch 1
+
+    # model properties
+    size [ 0.2 0.3 0.2 ]
+  )
+
+  # generic model properties
+  color "black"
+  size [ 0.156 0.155 0.19 ] 
+)
+
+
+define erratic position
+(
+  size [0.35 0.35 0.25]
+  origin [-0.05 0 0 0]
+  gui_nose 1
+  drive "diff"
+  topurg(pose [ 0.050 0.000 0 0.000 ])
+)
+
+define roomba position
+(
+  size [0.35 0.35 0.25]
+  block(
+    points 16
+    point[0] [ 0.225 0.000 ]
+    point[1] [ 0.208 0.086 ]
+    point[2] [ 0.159 0.159 ]
+    point[3] [ 0.086 0.208 ]
+    point[4] [ 0.000 0.225 ]
+    point[5] [ -0.086 0.208 ]
+    point[6] [ -0.159 0.159 ]
+    point[7] [ -0.208 0.086 ]
+    point[8] [ -0.225 0.000 ]
+    point[9] [ -0.208 -0.086 ]
+    point[10] [ -0.159 -0.159 ]
+    point[11] [ -0.086 -0.208 ]
+    point[12] [ -0.000 -0.225 ]
+    point[13] [ 0.086 -0.208 ]
+    point[14] [ 0.159 -0.159 ]
+    point[15] [ 0.208 -0.086 ]
+    z [0 0.22]
+  )
+  drive "omni"
+  localization "gps"
+  origin [0 0 0 0]
+  gui_nose 10
+
+)
+
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 0
+  gui_grid 0
+
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  laser_return 1
+)
+
+
+resolution 0.02  # set the resolution of the underlying raytrace model in meters
+
+interval_sim 100  # simulation timestep in milliseconds
+
+window
+( 
+  size [ 400.000 1728.000 ]
+  center [ 0 0]
+  rotate [ 0 0 ]
+  scale 40
+)
+
+# load an environment bitmap
+floorplan
+( 
+  name "corridor"
+  bitmap "corridor.png"
+  size [10.2 20.0 2.0]
+  pose [0.0 0.0 0.0 0.0]
+) 
+
+# throw in a robot
+erratic( 
+  name "era" 
+  pose [ 0 0 0 90 ]   
+  color "blue"
+  gripper_return 1
+)
+
+# simulating people
+roomba
+(		  
+  name "roomba1"
+  pose [ 0 9 0 0 ]
+  color "green"
+)
+roomba
+(		  
+  name "roomba2"
+  #pose [ 2.5 -7 0 0 ] 
+  pose [ 2.5 5 0 0 ]
+  color "green"
+)
+roomba
+(		  
+  name "roomba3"
+  pose [ 0.88 7 0 0 ]
+  color "green"
+)
+roomba
+(  
+  name "roomba4"  
+  pose [ 3 8 0 0 ] 
+  color "green"
+)
+roomba
+(		  
+  name "roomba5"
+  #pose [ -3.25 -1.75 0 0 ] 
+  pose [ 1.50 8 0 0 ] 
+  color "green"
+)
+roomba
+(		  
+  name "roomba6"
+  pose [ -2.5 2.5 0 0 ] 
+  color "green"
+)
+roomba
+( 
+  name "roomba7"
+  #pose [ 3.5 -1 0 0 ]
+  pose [ 0 6 0 0 ]
+  color "green" 
+)
+roomba
+(		  
+  name "roomba8"
+  pose [ 3.5 3.5 0 0 ] 
+  color "green"
+)
+#roomba
+#(		  
+  #name "roomba9"
+  #pose [ 2.5 -7 0 0 ]
+  #pose [ 1.5 3.5 0 0 ]
+  #color "red" 
+#)
+#roomba
+#(		  
+  #name "roomba10"
+  #pose [ -3.25 -1.75 0 0 ]
+  #pose [ -3 4 0 0 ] 
+  #color "red"
+#)
+#roomba
+#(		  
+  #name "roomba11"
+  #pose [ 3.5 -1 0 0 ] 
+  #pose [ 4 2 0 0 ]
+  #color "red"
+#)
+#roomba
+#(		  
+  #name "roomba12" 
+  #pose [ -0.6 7 0 0 ]
+  #color "red"
+#)
+#roomba
+#(		  
+  #name "roomba13"
+  #pose [ -1.6 9 0 0 ]
+  #color "red"
+#)
+#roomba
+#(		  
+  #name "roomba14"
+  #pose [ -1.5 5 0 0 ]
+  #color "red"
+#)
+#roomba
+#(		  
+  #name "roomba15"
+  #pose [ 2.5 1 0 0 ]
+  #color "red"
+#)
+
+
