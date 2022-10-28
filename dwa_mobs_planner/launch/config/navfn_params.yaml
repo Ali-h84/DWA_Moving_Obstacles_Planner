@@ -1,0 +1,3 @@
+NavfnROS:
+  transform_tolerance: 2.0
+  allow_unknown: true

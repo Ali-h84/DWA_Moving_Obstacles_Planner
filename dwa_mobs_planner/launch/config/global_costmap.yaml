@@ -1,0 +1,19 @@
+#Independent settings for the planner's costmap
+global_costmap: 
+  global_frame: map
+  robot_base_frame: base_link
+  update_frequency: 1.0
+  publish_frequency: 0.5
+  static_map: true
+  rolling_window: false
+  width: 60.0
+  height: 60.0
+  resolution: 0.01
+  origin_x: -30.0
+  origin_y: -30.0
+  raytrace_range: 30.0
+  obstacle_range: 18.0
+  track_unknown_space: true
+  unknown_cost_value: 255
+  
+
